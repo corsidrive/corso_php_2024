@@ -9,14 +9,14 @@ use crud\UserCRUD;
 class AutenticateService {
 
     public static function logIn($email,$password) {
-        var_dump($email,$password);
+        // var_dump($email,$password);
         try {
             $crud = new UserCRUD;
             # esiste un utente con la stessamail
             $user = $crud->findByMail($email);
        
             # controlliamo la password inserita
-            var_dump($user->password === md5($password));
+            // var_dump($user->password === md5($password));
             if($user->password === md5($password)){
 
                 $_SESSION['user_id'] = $user->user_id;

@@ -1,9 +1,10 @@
 <?php 
 namespace crud;
+use model\Mazzo;
 use model\User;
 
 
-class UserCRUD {
+class MazzoCRUD {
 
    
     private $pdo;
@@ -19,7 +20,7 @@ class UserCRUD {
         } catch (\PDOException $th) {
 
              throw $th;
-        
+            
         }
 
     }
@@ -40,17 +41,17 @@ class UserCRUD {
         return  $this->pdo->lastInsertId();
     }
 
-    public function readOne(int $user_id):User {
-        $sql = "SELECT * FROM user WHERE user_id = :user_id;";
+    public function readOne(int $mazzo_id) {
+        $sql = "SELECT * FROM mazzo WHERE mazzo_id = :mazzo_id;";
         $stm = $this->pdo->prepare($sql);
-        $stm->bindValue(':user_id',$user_id,\PDO::PARAM_INT);
+        $stm->bindValue(':mazzo_id',$mazzo_id,\PDO::PARAM_INT);
         $stm->execute();
 
-        $user = $stm->fetchAll(\PDO::FETCH_CLASS,"model\User")[0];
+        $mazzo = $stm->fetchAll(\PDO::FETCH_CLASS,Mazzo::class)[0];
         // $user = $stm->fetchAll(\PDO::FETCH_FUNC,function($nome,$cognome,$email){
         //             return new User($no)
         // })[0];
-        return $user;
+        return $mazzo;
     }
 
  
