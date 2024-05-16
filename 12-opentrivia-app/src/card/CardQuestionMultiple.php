@@ -24,11 +24,12 @@ class CardQuestionMultiple extends CardQuestion {
         $this->incorrect_answers[] = $this->correct_answer;
 
         */
-        
+        # sommo le risposte giuste con sbagliate
         $all_answers =  [...$this->incorrect_answers, $this->correct_answer];
-        // $all_answers =  $this->incorrect_answers[] = $this->correct_answer;
-        shuffle($all_answers);
-        return $all_answers; // $all_answers
+        return $all_answers;
+        // // $all_answers =  $this->incorrect_answers[] = $this->correct_answer;
+        // shuffle($all_answers);
+        // return $all_answers; // $all_answers
     }
 
     public function isCorrect($user_response):bool
