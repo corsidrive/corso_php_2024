@@ -24,7 +24,10 @@ class CardQuestionMultiple extends CardQuestion {
         $this->incorrect_answers[] = $this->correct_answer;
 
         */
+        
         $all_answers =  [...$this->incorrect_answers, $this->correct_answer];
+        // $all_answers =  $this->incorrect_answers[] = $this->correct_answer;
+        shuffle($all_answers);
         return $all_answers; // $all_answers
     }
 

@@ -1,5 +1,7 @@
 # Corso di PHP
-
+user 
+mr@email.it2
+password
 
 ## Lezione del 29/02/2024
 

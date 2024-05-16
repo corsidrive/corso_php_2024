@@ -25,18 +25,17 @@ class UserCRUD {
     }
     public function create($query_string){
 
-        $url = "https://opentdb.com/api.php?". http_build_query($query_string);
+         $url = "https://opentdb.com/api.php?". http_build_query($query_string);
          $response = getJson($url);
-   
+        #
         
-            $carte = json_encode($response);
+        $carte = json_encode($response);
         
             $sql = "INSERT INTO mazzo (carte) VALUES (:carte)";
             $stm = $this->pdo->prepare($sql);
-            $stm->bindValue(':carte',json_encode($carte),\PDO::PARAM_INT);
+            $stm->bindValue(':carte',$carte,\PDO::PARAM_STR);
             $stm->execute();
         
-       
        
         return  $this->pdo->lastInsertId();
     }
