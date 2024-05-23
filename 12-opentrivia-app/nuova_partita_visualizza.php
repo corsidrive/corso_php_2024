@@ -24,33 +24,51 @@ if (!isset($_SESSION['mazzo_id'])) {
 
 ?>
 <?php require_once "./view/header.php" ?>
+
 <div class="container">
-    <?php foreach ($mazzo_partita->carte() as $numero => $card): ?>
-        <!-- card -->
-        <div class="card" style="width: 18rem">
-            <div class="card-body">
-                <h5 class="card-title"><?= $card->showQuestion() ?></h5>
-                <!-- <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p> -->
-            </div>
-            <div class="p-3">
-                <?php print_r($card->showAnswers()) ?>
-                <!-- INIZIO RISPOSTA -->
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        rispostA 1
-                    </label>
+    <form action="nuova_partita_fine.php" method="post">
+        <button class="btn btn-primary" type="submit">Fine Partita</button>
+
+        <!-- FOREAC DELLE CARTE -->
+        <?php foreach ($mazzo_partita->carte() as $numero => $card): ?>
+            <!-- card -->
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $numero ?>     <?= $card->showQuestion() ?></h5>
+                    <!-- <p class="card-text">
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                    </p> -->
                 </div>
-                <!-- FINE  RISPOSTA -->
+                <div class="p-3">
+                    <pre class="rosso"><?php // print_r($card->showAnswers()) ?></pre>
+                    <?php foreach ($card->showAnswers() as $n_risposta => $risposta) { ?>
+                        <!-- INIZIO RISPOSTA -->
+                        <div class="form-check">
+                            <input class="form-check-input" 
+                                type="radio" 
+                                name="user_answer[<?= $numero ?>]"
+                                value="<?= $risposta ?>"
+                                id="flexRadioDefault1" />
+
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                <?php echo $n_risposta ?>         <?= $risposta ?>
+                            </label>
+                        </div>
+                        <!-- FINE  RISPOSTA -->
+                    <?php } ?>
+
+
+                </div>
             </div>
-        </div>
-        <!-- card - fine -->
-    <?php endforeach ?>
+            <!-- card - fine -->
+        <?php endforeach ?>
 
+    </form>
+    <pre>
+        <?php print_r($mazzo_partita->carte()) ?>
 
-    <?php print_r($mazzo_partita->carte()) ?>
-</div>
+    </pre>
+</div> <!-- container -->
+
 <?php require_once "./view/footer.php" ?>

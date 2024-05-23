@@ -4,6 +4,7 @@ class CardQuestionMultiple extends CardQuestion {
     private $correct_answer;
     private $incorrect_answers;
 
+
     public function __construct($data) {
         parent::__construct($data);
         $this->incorrect_answers = $data['incorrect_answers'];
@@ -34,6 +35,20 @@ class CardQuestionMultiple extends CardQuestion {
 
     public function isCorrect($user_response):bool
     {
-        return true;
+        // $this->user_answer = $user_response;
+        // if($this->correct_answer === $user_response){
+        //     return true;
+        // }else{
+        //     return false;            
+        // }
+
+        return $this->correct_answer === $user_response;
+    }
+
+    public function toArray():array{
+        return [];
+    }
+    public function serializeJSON():string{
+       return json_encode($this,JSON_PRETTY_PRINT);
     }
 }

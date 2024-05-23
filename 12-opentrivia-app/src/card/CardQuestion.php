@@ -6,6 +6,7 @@ abstract class CardQuestion {
     protected $difficulty;
     protected $category;
 
+    public $user_answer;
     public function __construct(array $data) {
          $this->type = $data['type'];
          $this->question = $data['question'];
@@ -19,5 +20,9 @@ abstract class CardQuestion {
 
     public abstract function showAnswers() : array;
     public abstract function isCorrect($user_response):bool;
+    public abstract function serializeJSON():string;
+    public abstract function toArray():array;
+
+
 }
 
